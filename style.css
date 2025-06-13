@@ -1,0 +1,149 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    margin: 0;
+    color: #333;
+    overflow-x: hidden;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 90%;
+    width: 500px;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #e91e63;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.photo-gallery {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    margin: 20px 0;
+    padding: 10px 0;
+    border-radius: 8px;
+    background-color: #eee;
+}
+
+.photo-gallery img {
+    flex: 0 0 auto;
+    width: 80%; /* Ajuste para mostrar mais de uma foto, mas com foco */
+    height: auto;
+    max-height: 300px; /* Limita a altura das fotos */
+    margin: 0 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    scroll-snap-align: center;
+}
+
+button {
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #e73070;
+}
+
+.hidden {
+    display: none;
+}
+
+#message-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #ffe0b2;
+    border-radius: 8px;
+    border: 1px solid #ffcc80;
+}
+
+.secret-message-area {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #e0f7fa;
+    border-radius: 8px;
+    border: 1px solid #b2ebf2;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.secret-message-area:hover {
+    background-color: #c0e7eb;
+}
+
+.secret-text {
+    font-style: italic;
+    color: #00796b;
+}
+
+/* Efeito de confete (exemplo básico) */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background-color: #ffeb3b; /* Amarelo */
+    border-radius: 50%;
+    opacity: 0;
+    animation: confetti-fall 3s forwards;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-100px) rotateZ(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotateZ(720deg);
+        opacity: 0;
+    }
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    .photo-gallery img {
+        width: 90%;
+    }
+}
+
