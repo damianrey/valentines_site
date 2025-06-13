@@ -1,35 +1,51 @@
+/* Importando fontes do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap');
 
 body {
-    font-family: 'Arial', sans-serif;
+    /* Fontes: Lato para o corpo do texto */
+    font-family: 'Lato', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f2f5;
+    /* Fundo em gradiente suave */
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
     margin: 0;
-    color: #333;
+    color: #4f4f4f; /* Cor de texto mais suave */
     overflow-x: hidden;
+    padding: 20px 0; /* Espaçamento para não colar nas bordas */
 }
 
 .container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo branco com leve transparência */
+    padding: 30px;
+    border-radius: 15px;
+    /* Sombra mais suave e moderna */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px); /* Efeito de vidro fosco */
     text-align: center;
     max-width: 90%;
     width: 500px;
     box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 h1 {
-    color: #e91e63;
-    margin-bottom: 15px;
+    /* Fonte: Playfair Display para o título */
+    font-family: 'Playfair Display', serif;
+    color: #d83c5a; /* Tom de rosa mais fechado */
+    margin-bottom: 20px;
+    font-size: 2.5em;
 }
 
 p {
     font-size: 1.1em;
-    line-height: 1.6;
+    line-height: 1.7;
+}
+
+#time-together {
+    font-weight: bold;
+    color: #c0392b;
 }
 
 .photo-gallery {
@@ -37,37 +53,44 @@ p {
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    margin: 20px 0;
-    padding: 10px 0;
-    border-radius: 8px;
-    background-color: #eee;
+    margin: 25px 0;
+    padding-bottom: 10px;
+    /* Remove a barra de rolagem visualmente, mas mantém a funcionalidade */
+    scrollbar-width: none; /* Firefox */
+}
+.photo-gallery::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
+
 .photo-gallery img {
-    flex: 0 0 auto;
-    width: 80%; /* Ajuste para mostrar mais de uma foto, mas com foco */
+    flex: 0 0 90%; /* Fotos ocupam mais espaço na tela */
     height: auto;
-    max-height: 300px; /* Limita a altura das fotos */
-    margin: 0 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-height: 350px;
+    margin: 0 5%; /* Centraliza a foto que está em foco */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     scroll-snap-align: center;
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
 }
 
 button {
-    background-color: #ff4081;
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
     color: white;
     border: none;
-    padding: 12px 25px;
-    border-radius: 5px;
+    padding: 15px 30px;
+    border-radius: 50px; /* Botão arredondado */
     font-size: 1.1em;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
     margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
 }
 
 button:hover {
-    background-color: #e73070;
+    transform: translateY(-3px); /* Efeito de elevação */
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.5);
 }
 
 .hidden {
@@ -75,50 +98,70 @@ button:hover {
 }
 
 #message-container {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #ffe0b2;
-    border-radius: 8px;
-    border: 1px solid #ffcc80;
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #fff0f1;
+    border-radius: 12px;
+    border-left: 5px solid #d83c5a;
 }
 
 .secret-message-area {
     margin-top: 30px;
     padding: 15px;
-    background-color: #e0f7fa;
-    border-radius: 8px;
-    border: 1px solid #b2ebf2;
+    background-color: #fce4ec;
+    border-radius: 12px;
+    border: 1px dashed #f48fb1;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .secret-message-area:hover {
-    background-color: #c0e7eb;
+    background-color: #f8bbd0;
 }
 
 .secret-text {
     font-style: italic;
-    color: #00796b;
+    color: #880e4f;
+    font-weight: bold;
 }
 
-/* Efeito de confete (exemplo básico) */
-.confetti {
+
+/* Efeito de corações caindo */
+.heart {
     position: fixed;
-    width: 10px;
-    height: 10px;
-    background-color: #ffeb3b; /* Amarelo */
-    border-radius: 50%;
+    width: 20px;
+    height: 20px;
     opacity: 0;
-    animation: confetti-fall 3s forwards;
+    animation: heart-fall 4s cubic-bezier(0.1, 0.5, 0.9, 0.1) forwards;
+    z-index: 9999;
 }
 
-@keyframes confetti-fall {
+/* A forma do coração é feita com pseudo-elementos */
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #e91e63; /* Cor do coração */
+    border-radius: 50%;
+}
+
+.heart::before {
+    transform: translateX(-50%);
+}
+
+.heart::after {
+    transform: translateY(-50%);
+}
+
+@keyframes heart-fall {
     0% {
-        transform: translateY(-100px) rotateZ(0deg);
+        transform: translateY(-10vh) rotate(0deg);
         opacity: 1;
     }
     100% {
-        transform: translateY(100vh) rotateZ(720deg);
+        transform: translateY(110vh) rotate(720deg);
         opacity: 0;
     }
 }
@@ -126,11 +169,11 @@ button:hover {
 /* Media Queries para responsividade */
 @media (max-width: 600px) {
     .container {
-        padding: 15px;
+        padding: 20px;
     }
 
     h1 {
-        font-size: 1.8em;
+        font-size: 2em;
     }
 
     p {
@@ -138,12 +181,11 @@ button:hover {
     }
 
     button {
-        padding: 10px 20px;
+        padding: 12px 25px;
         font-size: 1em;
     }
 
     .photo-gallery img {
-        width: 90%;
+        max-height: 300px;
     }
 }
-

@@ -15,21 +15,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const now = new Date();
         const diff = now.getTime() - startDate.getTime();
 
-        const seconds = Math.floor(diff / 1000);
-        const minutes = Math.floor(seconds / 60);
-        const hours = Math.floor(minutes / 60);
-        const days = Math.floor(hours / 24);
-        const months = Math.floor(days / 30.44); // Média de dias por mês
-        const years = Math.floor(days / 365.25); // Média de dias por ano
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const years = Math.floor(days / 365.25);
+        const remainingDaysAfterYears = days % 365.25;
+        const months = Math.floor(remainingDaysAfterYears / 30.44);
+        const remainingDays = Math.floor(remainingDaysAfterYears % 30.44);
 
         let timeString = 'Estamos juntos há ';
         if (years > 0) {
-            timeString += `${years} ano${years > 1 ? 's' : ''}, `;
+            timeString += `${years} ano${years > 1 ? 's' : ''}`;
         }
-        if (months % 12 > 0) {
-            timeString += `${months % 12} mês${months % 12 > 1 ? 'es' : ''} e `;
+        if (months > 0) {
+            timeString += `${years > 0 ? ', ' : ''}${months} m${months > 1 ? 'eses' : 'ês'}`;
         }
-        timeString += `${days % 30} dia${days % 30 > 1 ? 's' : ''} de muito amor!`;
+        if (remainingDays > 0) {
+            timeString += `${(years > 0 || months > 0) ? ' e ' : ''}${remainingDays} dia${remainingDays > 1 ? 's' : ''}`;
+        }
+        timeString += ' de muito amor!';
 
         timeTogetherElement.textContent = timeString;
     }
@@ -41,16 +43,25 @@ document.addEventListener('DOMContentLoaded', () => {
     revealMessageBtn.addEventListener('click', () => {
         messageContainer.classList.toggle('hidden');
         if (!messageContainer.classList.contains('hidden')) {
-            // Efeito de confete ao revelar a mensagem
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.classList.add('confetti');
-                confetti.style.left = `${Math.random() * 100}vw`;
-                confetti.style.animationDuration = `${Math.random() * 2 + 1}s`;
-                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                document.body.appendChild(confetti);
-                confetti.addEventListener('animationend', () => {
-                    confetti.remove();
+            // Efeito de corações ao revelar a mensagem
+            for (let i = 0; i < 30; i++) { // Diminuí para 30 para um efeito mais sutil
+                const heart = document.createElement('div');
+                heart.classList.add('heart'); // USA A NOVA CLASSE 'heart'
+                
+                // Posição e cores aleatórias
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.animationDuration = `${Math.random() * 2 + 3}s`; // Duração entre 3s e 5s
+                
+                // Para o coração ter a forma correta, a cor é definida no CSS.
+                // Mas podemos variar a cor aqui se quisermos corações de cores diferentes.
+                // Ex: heart.style.setProperty('--heart-color', `hsl(${Math.random() * 360}, 90%, 60%)`);
+                // Isso exigiria mudar o 'background-color' no CSS para 'var(--heart-color)'.
+
+                document.body.appendChild(heart);
+                
+                // Remove o coração da DOM após a animação terminar
+                heart.addEventListener('animationend', () => {
+                    heart.remove();
                 });
             }
         }
@@ -75,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
         './images/1000087050.jpg',
         './images/1000079682.jpg',
         './images/1000077244.jpg'
+        // Adicione mais fotos aqui se desejar
     ];
 
     photos.forEach(src => {
@@ -84,4 +96,3 @@ document.addEventListener('DOMContentLoaded', () => {
         photoGallery.appendChild(img);
     });
 });
-
