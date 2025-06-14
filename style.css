@@ -48,12 +48,31 @@ p {
     color: #c0392b;
 }
 
+/* NOVO: Wrapper da Galeria */
+.gallery-wrapper {
+    position: relative; /* Essencial para posicionar o gradiente */
+    margin: 25px 0;
+}
+
+/* NOVO: Indicador de rolagem (gradiente) */
+.gallery-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 60px; /* Largura do efeito de fade */
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9) 100%);
+    pointer-events: none; /* Permite que o clique "atravesse" o gradiente */
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
 .photo-gallery {
     display: flex;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    margin: 25px 0;
     padding-bottom: 10px;
     /* Remove a barra de rolagem visualmente, mas mantém a funcionalidade */
     scrollbar-width: none; /* Firefox */
